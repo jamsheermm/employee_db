@@ -23,7 +23,9 @@ class HomeController extends GetxController {
         employeeData = data;
         await DBHelper.instance.initDb();
         for (EmployeeData employee in data) {
-          DBHelper.instance.add(employee);
+          if (employee != null) {
+           await DBHelper.instance.add(employee);
+          }
         }
       }
     } finally {

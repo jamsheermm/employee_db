@@ -44,11 +44,8 @@ class DBHelper {
 // To get all the values that is inserted in database
   Future<List<Map>> getEmployeeList(String searchKey) async {
     var dbClient = await db;
-    List<Map<String, dynamic>> list = await dbClient.query(
-        TABLE_NAME,
-        where: "name LIKE ?",
-        whereArgs: ['%$searchKey']
-    );
+    List<Map<String, dynamic>> list = await dbClient
+        .query(TABLE_NAME, where: "name LIKE ?", whereArgs: ['%$searchKey']);
 
     print(list);
     return list;
@@ -75,13 +72,24 @@ class DBHelper {
           "lng": employee.address.geo.lng ?? "",
           "phone": employee.phone ?? "",
           "website": employee.website ?? "",
-          "company_name": employee.company.name ?? "",
-          "catchPhrase": employee.company.catchPhrase ?? "",
-          "bs": employee.company.bs ?? ""
+          "company_name":
+              employee.company != null && employee.company.name != null
+                  ? employee.company.name
+                  : "",
+          "catchPhrase":
+              employee.company != null && employee.company.catchPhrase != null
+                  ? employee.company.catchPhrase
+                  : "",
+          "bs": employee.company != null && employee.company.bs != null
+              ? employee.company.bs
+              : ""
         },
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } catch (e) {
+      print(employee.username);
+      print(employee.name);
+      print(employee.email);
       print("Error--> $e");
     }
   }

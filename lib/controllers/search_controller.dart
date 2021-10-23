@@ -10,12 +10,10 @@ class SearchController extends GetxController {
   EmployeeData searchResult;
 
   void searchWithKeyword(keyword) async {
-    var EmployeeSearchResult =
-        await DBHelper.instance.getEmployeeList(keyword);
+    var employeeSearchResult = await DBHelper.instance.getEmployeeList(keyword);
     print("********");
-    print(EmployeeSearchResult.toString());
+    print(employeeSearchResult.toString());
     print("********");
-    print(EmployeeSearchResult);
     print(searchTextController.text);
     searchResult = homeController.employeeData
         .where((employee) =>

@@ -110,9 +110,9 @@ class Company {
   Company({this.name, this.catchPhrase, this.bs});
 
   Company.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    catchPhrase = json['catchPhrase'];
-    bs = json['bs'];
+    name = json['name']??"";
+    catchPhrase = json['catchPhrase']??"";
+    bs = json['bs']??"";
   }
 
   Map<String, dynamic> toJson() {

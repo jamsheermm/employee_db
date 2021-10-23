@@ -28,9 +28,9 @@ class EmployeeDetailsPage extends StatelessWidget {
               employeeData.profileImage != null
                   ? Image.network(employeeData.profileImage)
                   : const Icon(
-                Icons.person,
-                size: 100.0,
-              ),
+                      Icons.person,
+                      size: 100.0,
+                    ),
               Text(
                 employeeData.name ?? "",
                 style: AppStyles.titleStyle,
@@ -74,14 +74,23 @@ class EmployeeDetailsPage extends StatelessWidget {
                 style: AppStyles.boldTextStyle,
               ),
               Text(
-                employeeData.company.name ?? "",
+                employeeData.company != null &&
+                        employeeData.company.name != null
+                    ? employeeData.company.name
+                    : "",
                 style: AppStyles.normalTextStyle,
               ),
               Text(
-                employeeData.company.bs ?? "",
+                employeeData.company != null && employeeData.company.bs != null
+                    ? employeeData.company.bs
+                    : "",
                 style: AppStyles.normalSmallTextStyle,
               ),
-              Text(employeeData.company.catchPhrase ?? "",
+              Text(
+                  employeeData.company != null &&
+                          employeeData.company.catchPhrase != null
+                      ? employeeData.company.catchPhrase
+                      : "",
                   style: AppStyles.normalSmallTextStyle)
             ],
           ),
